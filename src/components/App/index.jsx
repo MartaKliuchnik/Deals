@@ -7,7 +7,8 @@ import NavBar from '../NavBar';
 import { useEffect } from 'react';
 
 function App() {
-  const [deals, _setDeals] = useState([]);
+  const deals_array = [];
+  const [deals, _setDeals] = useState(deals_array);
 
   const setDeals = (state) => {
     _setDeals(state);
@@ -19,16 +20,17 @@ function App() {
     setDeals(deals);
   }, []);
 
-  const add_deals_list = (title, days) => {
+  const add_deals_list = (title, days) => 
     setDeals(
       [...deals,
       {
         id: Date.now(),
-        title, days
-      }]);
-  }
+          title, days, 
+          ordinal_number: ++deals.length
+        }]);
 
-  deals.sort((a, b) => +a.days - +b.days)
+  deals.sort((a, b) => +a.days - +b.days);
+  deals.sort((a,b) => a.ordinal_number - b.ordinal_number)
   
   return (
     <Context.Provider value={{add_deals_list}}>
@@ -37,7 +39,7 @@ function App() {
       <div>
         <Routes>
           <Route path='/add' element={<Add deals={deals} />}></Route>
-          <Route path='/view' element={<View />}></Route>
+          <Route path='/view' element={<View deals={deals} />}></Route>
         </Routes>
       </div>
       </>

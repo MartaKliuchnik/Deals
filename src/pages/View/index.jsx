@@ -1,7 +1,10 @@
 import React from 'react'
+import DealsContainer from '../../components/DealsContainer';
 
-export default function View() {
+export default function View({deals}) {
   return (
-    <div>View</div>
+    <div>
+      <DealsContainer deals={deals} />
+    </div>
   )
 }
