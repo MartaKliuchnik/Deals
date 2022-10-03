@@ -1,10 +1,10 @@
 import React from 'react'
 import DealCard from '../DealCard'
 
-export default function DealsContainer({deals}) {
+export default function DealsContainer({cards}) {
     return (
         <div className={'container'}>
-            {deals.map(deal => <DealCard key={deal.id} {...deal} />)}
+            {cards.map(card => <DealCard key={card.id} {...card} />)}
         </div>
     )
 }

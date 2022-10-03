@@ -7,14 +7,12 @@ import NavBar from '../NavBar';
 import { useEffect } from 'react';
 
 function App() {
-  const deals_array = [];
-  const [deals, _setDeals] = useState(deals_array);
+  const [deals, _setDeals] = useState([]);
 
   const setDeals = (state) => {
     _setDeals(state);
     localStorage.setItem('deals', JSON.stringify(state))
   }
-
   useEffect(() => {
     const deals = JSON.parse(localStorage.getItem('deals')) ?? [];
     setDeals(deals);
@@ -30,16 +28,32 @@ function App() {
         }]);
 
   deals.sort((a, b) => +a.days - +b.days);
-  deals.sort((a,b) => a.ordinal_number - b.ordinal_number)
+
+
+
+  const cards_array = [];
+  const [cards, setCards] = useState(cards_array);
+
+  const add_deal_card = (title, days) => 
+    setCards(
+      [...cards,
+      {
+        id: Date.now(),
+          title, days,
+          ordinal_number: ++cards.length
+        }]);
+  
+  cards.sort((a, b) => a.ordinal_number - b.ordinal_number);
+  
   
   return (
-    <Context.Provider value={{add_deals_list}}>
+    <Context.Provider value={{add_deals_list, add_deal_card}}>
       <>
       <NavBar/>
       <div>
         <Routes>
           <Route path='/add' element={<Add deals={deals} />}></Route>
-          <Route path='/view' element={<View deals={deals} />}></Route>
+          <Route path='/view' element={<View cards={cards} />}></Route>
         </Routes>
       </div>
       </>

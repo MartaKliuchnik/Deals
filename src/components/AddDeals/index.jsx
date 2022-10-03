@@ -5,12 +5,13 @@ import Button from '../UI/Button';
 
 export default function AddDeals() {
 
-    const { add_deals_list } = useContext(Context);
+    const { add_deals_list, add_deal_card } = useContext(Context);
 
     const submit = event => {
         event.preventDefault();
         const { title, days } = event.target;
         add_deals_list(title.value, days.value);
+        add_deal_card(title.value, days.value);
         title.value = ''; 
         days.value = '';
     }
