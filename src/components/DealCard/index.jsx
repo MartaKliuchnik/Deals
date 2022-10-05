@@ -3,7 +3,6 @@ import Close from '../UI/Close';
 import s from './style.module.sass'
 
 export default function DealCard({ title, ordinal_number }) {
-    
 
     return (
         <div className={s.card}>

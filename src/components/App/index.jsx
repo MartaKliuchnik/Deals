@@ -18,42 +18,28 @@ function App() {
     setDeals(deals);
   }, []);
 
-  const add_deals_list = (title, days) => 
-    setDeals(
-      [...deals,
-      {
-        id: Date.now(),
-          title, days, 
-          ordinal_number: ++deals.length
-        }]);
-
+  const add_deals_list = (title, days) => {
+    const cur_deals = {
+      id: Date.now(),
+      title, days,
+      ordinar_number: '0'
+    }
+    setDeals([...deals, cur_deals]);
+  }
   deals.sort((a, b) => +a.days - +b.days);
 
+  deals.forEach(function(_, index) {
+    deals.ordinar_number = ++index;
+  })
 
-
-  const cards_array = [];
-  const [cards, setCards] = useState(cards_array);
-
-  const add_deal_card = (title, days) => 
-    setCards(
-      [...cards,
-      {
-        id: Date.now(),
-          title, days,
-          ordinal_number: ++cards.length
-        }]);
-  
-  cards.sort((a, b) => a.ordinal_number - b.ordinal_number);
-  
-  
   return (
-    <Context.Provider value={{add_deals_list, add_deal_card}}>
+    <Context.Provider value={{add_deals_list}}>
       <>
       <NavBar/>
       <div>
         <Routes>
-          <Route path='/add' element={<Add deals={deals} />}></Route>
-          <Route path='/view' element={<View cards={cards} />}></Route>
+          <Route path='/add' element={<Add deals={deals}/>}></Route>
+          <Route path='/view' element={<View deals={deals}/>}></Route>
         </Routes>
       </div>
       </>
