@@ -2,10 +2,10 @@ import React from 'react';
 import { CloseOutlined } from '@ant-design/icons';
 import s from './style.module.sass'
 
-export default function Close() {
+export default function Close(props) {
     return (
-        <button className={s.close_btn}>
-            <CloseOutlined />
+        <button {...props} className={s.close_btn}>
+            <CloseOutlined  />
         </button>
     )
 }

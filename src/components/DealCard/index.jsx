@@ -1,14 +1,18 @@
 import React from 'react';
+import { useContext } from 'react';
+import { Context } from '../../context';
 import Close from '../UI/Close';
 import s from './style.module.sass'
 
-export default function DealCard({ title, ordinal_number }) {
+export default function DealCard({ id, title, days }) {
+
+    const { delete_deals } = useContext(Context);
 
     return (
         <div className={s.card}>
-            <p>{ordinal_number}.</p>
+            <p>{days}.</p>
             <p>{title}</p>
-            <Close/>
+            <Close onClick={() => delete_deals(id)} />
         </div>
     )
 }

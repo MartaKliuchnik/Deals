@@ -4,7 +4,6 @@ import EmptyList from '../EmptyList';
 import s from './style.module.sass';
 
 export default function DealsContainer({ deals }) {
-    
 
     return (
         <div className={'container'}>

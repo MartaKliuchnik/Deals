@@ -18,22 +18,21 @@ function App() {
     setDeals(deals);
   }, []);
 
-  const add_deals_list = (title, days) => {
-    const cur_deals = {
-      id: Date.now(),
-      title, days,
-      ordinar_number: '0'
-    }
-    setDeals([...deals, cur_deals]);
-  }
+  const add_deals_list = (title, days) => 
+    setDeals([...deals,
+      {
+        id: Date.now(),
+        title, days
+      }
+    ]);
+  
   deals.sort((a, b) => +a.days - +b.days);
 
-  deals.forEach(function(_, index) {
-    deals.ordinar_number = ++index;
-  })
+  const delete_deals = (id) => setDeals(deals.filter(deal => deal.id !== id));
+
 
   return (
-    <Context.Provider value={{add_deals_list}}>
+    <Context.Provider value={{add_deals_list, delete_deals}}>
       <>
       <NavBar/>
       <div>
