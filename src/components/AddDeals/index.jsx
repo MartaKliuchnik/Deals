@@ -11,6 +11,7 @@ export default function AddDeals() {
         event.preventDefault();
         const { title, days } = event.target;
         add_deals_list(title.value, days.value);
+        console.log(days.value)
         title.value = ''; 
         days.value = '';
     }
@@ -21,7 +22,8 @@ export default function AddDeals() {
         <form onSubmit={submit} className={ s.add_deals}>
             <input required type="text" name='title' placeholder='Название' />
             <select required defaultValue='' name="days">
-                <option disabled hidden value="">День недели</option>
+                {/* <option disabled hidden value="">День недели</option> */}
+                <option disabled selected value="">День недели</option>
                 <option value="1">Понедельник</option>
                 <option value="2">Вторник</option>
                 <option value="3">Среда</option>

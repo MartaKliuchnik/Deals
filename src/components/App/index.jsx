@@ -18,13 +18,26 @@ function App() {
     setDeals(deals);
   }, []);
 
-  const add_deals_list = (title, days) => 
+  const add_deals_list = (title, days) =>
     setDeals([...deals,
       {
         id: Date.now(),
         title, days
       }
     ]);
+  
+  // const add_deals_list = (title, days) => {
+  //   days = +days;
+  //   setDeals(prev => {
+  //     const new_deals = [...prev,
+  //     {
+  //       id: Date.now(),
+  //       title, days
+  //     }];
+  //   new_deals.sort((a, b) => a.days - b.days)
+  //     return new_deals;
+  // })}
+  
   
   deals.sort((a, b) => +a.days - +b.days);
 
@@ -40,7 +53,7 @@ function App() {
           <Route path='/add' element={<Add deals={deals}/>}></Route>
           <Route path='/view' element={<View deals={deals}/>}></Route>
         </Routes>
-      </div>
+        </div>
       </>
     </Context.Provider>
   );

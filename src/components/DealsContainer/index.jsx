@@ -11,7 +11,7 @@ export default function DealsContainer({ deals }) {
             {
                 deals.length === 0
                 ? <div className={s.empty_list}><EmptyList/></div>
-                : deals.map(deal => <DealCard key={deal.id} {...deal} />)
+                    : deals.map((deal, index) => <DealCard key={deal.id} index={index} {...deal} />)
             }
             
         </div>
